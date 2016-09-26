@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160923085939) do
+ActiveRecord::Schema.define(version: 20160926183637) do
 
   create_table "clients", force: :cascade do |t|
     t.float    "latitude"
@@ -28,6 +28,20 @@ ActiveRecord::Schema.define(version: 20160923085939) do
     t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.float    "amount"
+    t.integer  "responseCode"
+    t.string   "responseMessage"
+    t.string   "xref"
+    t.float    "amountReceived"
+    t.string   "transactionID"
+    t.string   "cardNumberMask"
+    t.string   "cardTypeCode"
+    t.string   "cardType"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "sitters", force: :cascade do |t|

@@ -34,6 +34,7 @@ gem "google-instant-hangouts"
 gem 'devise_lastseenable'
 gem 'bootswatch-rails'
 gem "font-awesome-rails"
+gem 'therubyracer'
 
 
 # Use Redis adapter to run Action Cable in production
