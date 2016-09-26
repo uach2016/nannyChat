@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NannyApp4u</title>
+    <%= csrf_meta_tags %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application'%>
+
+  </head>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">NannyApp4u</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><%= link_to 'chat', chat_room_path%></li>
+
+        <% if((user_signed_in? == true) && (current_user.role == "client")) %>
+          <li><%= link_to 'See all our nannies', sitters_path %></li>
+        <% else %>
+            <li><%= link_to 'Sign out', destroy_user_session_path, method: 'DELETE' %></li>
+        <% end %>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+          <%if( (user_signed_in? == true) &&(current_user.role == "client") && (current_user.sign_in_count == 1))%>
+            <% link_to new_client_path %>
+          <%elsif( (user_signed_in? == true) &&(current_user.role == "sitter") && (current_user.sign_in_count == 1))%>
+            <% link_to new_sitter_path %>
+          <%elsif ( (user_signed_in? == true) &&(current_user.role == "client") )%>
+            <li><%= link_to 'your profile', client_path(current_user.client)%></li>
+          <% elsif ( (user_signed_in? == true) &&(current_user.role == "sitter") )%>
+            <li><%= link_to 'your profile', sitter_path(current_user.sitter)%></li>
+          <% else %>
+              <li><%= link_to 'Sign out', destroy_user_session_path, method: 'DELETE' %></li>
+          <% end %>
+
+        <li><%= link_to 'Sign out', destroy_user_session_path, method: 'DELETE' %></li>
+      </ul>
+    </div>
+  </nav>
+  <% flash.each do |current_user, msg| -%>
+     <%= content_tag :div, msg, class: "alert alert-#{current_user}" %>
+  <% end -%>
+  <div class="container">
+
+    <%= yield %>
+  
+    </div>
+
+  </body>
+  </div>
+</html>
+

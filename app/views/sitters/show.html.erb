@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<p style="float:right">
+    <%= image_tag @sitter.avatar.url %>
+</p>
+<div class="container col-md-3"
+<p>
+  <strong>Name:</strong>
+  <%= @sitter.name %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @sitter.phone %>
+</p>
+
+<p>
+  <strong>Date of birth:</strong>
+  <%= @sitter.date_of_birth %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @sitter.address %>
+</p>
+
+<p>
+
+  <strong>Description:</strong>
+  <%= @sitter.description %>
+</p>
+</div>
+
+
+<div class="container-fluid">
+  <div class="panel-group col-md-10" style="position:absolute; bottom:0px">
+    <div class="panel panel-default">
+      <%= link_to 'Edit', edit_sitter_path(@sitter)%>
+      <%= link_to 'Destroy', @sitter, method: :delete, data: { confirm: 'Are you sure?' },style: "float: right" %>
+    </div>
+  </div>
+</div>

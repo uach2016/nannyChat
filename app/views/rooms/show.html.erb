@@ -1,0 +1,15 @@
+<h1>Chat room</h1>
+
+<div style="float:right">
+    <%= instant_hangout topic: 'My Hangout' %>
+</div>
+
+
+<div id="messages"z>
+  <%= render @messages %>
+</div>
+
+<form>
+  <label>Say something:</label><br>
+  <input type="text" data-behavior="room_speaker">
+</form>

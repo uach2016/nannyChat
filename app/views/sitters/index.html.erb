@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+<script src='//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js' type='text/javascript'></script>
+
+
+<div class="container col-md-12">
+<div class="row"> 
+  <div class="container col-md-6"> 
+    <h1><strong>Our Nannies</strong></h1>
+    <h4>If you want to know more about our Nunnies, please click on<br><strong>See profile</strong> or either the <strong>Marker</h4></strong></h4> 
+  </div>
+</div>
+
+
+
+<div class="row" style='margin-top:20px'>
+  <div class="col-md-6">
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @sitters.each do |sitter| %>
+          <tr>
+            <td><%= sitter.name %>&nbsp;&nbsp;</td>
+            <td><%= link_to 'See profile', show_client_path(sitter), class: 'btn btn-success btn-xs' %></td>
+        <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-6">
+    <div id="map" style='width: 100%; height: 400px;'></div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers(<%=raw @hash.to_json %>)
+    markers = handler.addMarkers(<%=raw @loc_client.to_json %>)
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+  });
+</script>
