@@ -2,6 +2,7 @@ require 'net/http'
 require 'uri'
 
 class Payment < ApplicationRecord
+  validate :credit_card_api_access, :on => :create
 	attr_accessor :cardNumber, :cardCVV, :cardExpiryMonth, :cardExpiryYear
     
   attr_accessor :responseMessage, :amount, :amountReceived, :cardNumberMask,

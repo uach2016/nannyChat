@@ -22,6 +22,7 @@ class SittersController < ApplicationController
   # GET /sitters/1.json
   def show
   end
+  
   def show_client
     @sitter = Sitter.find(params[:id])
   end

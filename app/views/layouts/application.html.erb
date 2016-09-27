@@ -15,29 +15,36 @@
         <a class="navbar-brand" href="#">NannyApp4u</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><%= link_to 'chat', chat_room_path%></li>
+        <% if (user_signed_in? == true) %>
+          <li><%= link_to 'Home', home_path%></li>
+          <li><%= link_to 'chat', chat_room_path%></li>
+        <% end %>
 
         <% if((user_signed_in? == true) && (current_user.role == "client")) %>
           <li><%= link_to 'See all our nannies', sitters_path %></li>
-        <% else %>
-            <li><%= link_to 'Sign out', destroy_user_session_path, method: 'DELETE' %></li>
+          <li><%= link_to 'Make a payment', payments_path %></li>
         <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
           <%if( (user_signed_in? == true) &&(current_user.role == "client") && (current_user.sign_in_count == 1))%>
             <% link_to new_client_path %>
-          <%elsif( (user_signed_in? == true) &&(current_user.role == "sitter") && (current_user.sign_in_count == 1))%>
-            <% link_to new_sitter_path %>
           <%elsif ( (user_signed_in? == true) &&(current_user.role == "client") )%>
             <li><%= link_to 'your profile', client_path(current_user.client)%></li>
-          <% elsif ( (user_signed_in? == true) &&(current_user.role == "sitter") )%>
-            <li><%= link_to 'your profile', sitter_path(current_user.sitter)%></li>
           <% else %>
-              <li><%= link_to 'Sign out', destroy_user_session_path, method: 'DELETE' %></li>
+            <li><% link_to 'your profile', new_user_session_path %></li>
           <% end %>
 
-        <li><%= link_to 'Sign out', destroy_user_session_path, method: 'DELETE' %></li>
+          <%if( (user_signed_in? == true) &&(current_user.role == "sitter") && (current_user.sign_in_count == 1))%>
+            <% link_to new_sitter_path %>
+          <% elsif ( (user_signed_in? == true) &&(current_user.role == "sitter") ) %>
+            <li><%= link_to 'your profile', sitter_path(current_user.sitter)%></li>
+          <% else %>
+            <li><% link_to 'your profile', new_user_session_path %></li>
+          <% end %>
+
+          <% if (user_signed_in? == true) %>
+            <li><%= link_to 'Sign out', destroy_user_session_path, method: 'DELETE' %></li>
+          <% end %>
       </ul>
     </div>
   </nav>
@@ -45,6 +52,7 @@
      <%= content_tag :div, msg, class: "alert alert-#{current_user}" %>
   <% end -%>
   <div class="container">
+
 
     <%= yield %>
   

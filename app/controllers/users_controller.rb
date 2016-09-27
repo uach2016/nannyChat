@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def profile
     @user = current_user
     if ((current_user.sign_in_count > 1)&&(current_user.role == "client"))
-    	redirect_to client_path(current_user.client)
+    	redirect_to sitters_path
      elsif ((current_user.sign_in_count > 1)&&(current_user.role == "sitter"))
       redirect_to sitter_path(current_user.sitter)
     else

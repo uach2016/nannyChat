@@ -1,15 +1,17 @@
+<div class="page-header">
 <h1>Chat room</h1>
-
+ 
+</div>
 <div style="float:right">
     <%= instant_hangout topic: 'My Hangout' %>
 </div>
 
-
-<div id="messages"z>
-  <%= render @messages %>
+<div style="width:350px; height:400px; overflow-y : scroll;">
+	<div id="messages"z>
+	  <%= render @messages %>
+	</div>
 </div>
-
 <form>
   <label>Say something:</label><br>
-  <input type="text" data-behavior="room_speaker">
+  <input style="width:300px;" type="text" data-behavior="room_speaker">
 </form>
