@@ -8,11 +8,10 @@ class ClientsController < ApplicationController
   def show
   end
 
-   def show_home
+  def home
+    binding.pry
     redirect_to home_path
   end
-
-
 
   def new
     @client = Client.new

@@ -1,5 +1,10 @@
 Rails.application.configure do
 
+config.action_cable.allowed_request_origins = ['https://your_app.herokuapp.com',
+                                               'http://your_app.herokuapp.com']
+
+config.action_cable.url = "wss://sitepoint-actioncable.herokuapp.com/cable"
+
 # config.action_mailer.raise_delivery_errors = true
 # config.action_mailer.perform_deliveries = true
 
