@@ -21,5 +21,3 @@ production:
   username: nannyapp4u
   password: <%= ENV['HELLO-WORLD_DATABASE_PASSWORD'] %>
   database: db/test.sqlite3
-
-
